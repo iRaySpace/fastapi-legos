@@ -6,13 +6,16 @@ from fastapi.routing import APIRouter
 def _create_endpoints(router: APIRouter, cls, prefix):
     default_endpoints = [
         ('get', prefix, 'get_all', 'Read all'),
-        ('get', prefix, 'get', 'Read'),
+        ('get', prefix + '/{id}', 'get', 'Read'),
         ('post', prefix, 'post', 'Create'),
-        ('post', prefix, 'put', 'Update'),
-        ('delete', prefix, 'delete', 'Delete'),
+        ('put', prefix + '/{id}', 'put', 'Update'),
+        ('delete', prefix + '/{id}', 'delete', 'Delete'),
     ]
     for router_method, path, cls_method, summary in default_endpoints:
-        print(router_method, path, cls_method, summary) 
+        endpoint = getattr(cls, cls_method, None)
+        if endpoint:
+            endpoint_generator = getattr(router, router_method)
+            endpoint_generator(path)(endpoint)
 
 
 def get_router():
