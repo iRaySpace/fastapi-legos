@@ -8,6 +8,7 @@ authors = ["None"]
 python = "^3.8"
 fastapi = "^0.95.2"
 uvicorn = {extras = ["standard"], version = "^0.22.0"}
+cookiecutter = "^2.1.1"
 
 
 [build-system]

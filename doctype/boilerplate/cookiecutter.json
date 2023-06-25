@@ -1,0 +1,4 @@
+{
+    "name": "{{ cookiecutter.name }}",
+    "name_capitalized": "{{ cookiecutter.name_capitalized }}"
+}
